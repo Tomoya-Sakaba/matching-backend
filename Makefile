@@ -6,7 +6,6 @@ install:
 	docker-compose exec web composer install
 	docker-compose exec web php artisan key:generate
 	docker-compose exec web php artisan migrate --seed
-	docker-compose exec web npm install
 
 up:
 	docker-compose up -d
