@@ -19,13 +19,11 @@ return new class extends Migration
             $table->string('phone_number', 11)->comment('電話番号');
             $table->string('client_url')->nullable()->comment('企業サイトURL');
             $table->integer('code')->comment('郵便番号');
-            $table->unsignedBigInteger('prefecture_id')->comment('都道府県ID');
+            $table->string('prefecture')->comment('都道府県');
             $table->string('city')->comment('市区町村');
             $table->string('address')->comment('番地');
             $table->string('building')->nullable()->comment('建物');
             $table->timestamps();
-
-            $table->foreign('prefecture_id')->references('id')->on('prefectures');
         });
     }
 

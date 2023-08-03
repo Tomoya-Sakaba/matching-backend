@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('birthday')->comment('誕生日');
             $table->unsignedBigInteger('profession_id')->comment('職業ID');
             $table->integer('code')->comment('郵便番号');
-            $table->unsignedBigInteger('prefecture_id')->comment('都道府県ID');
+            $table->string('prefecture')->comment('都道府県');
             $table->string('city')->comment('市区町村');
             $table->string('address')->comment('番地');
             $table->string('building')->nullable()->comment('建物');
@@ -32,7 +32,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('profession_id')->references('id')->on('professions');
-            $table->foreign('prefecture_id')->references('id')->on('prefectures');
         });
     }
 

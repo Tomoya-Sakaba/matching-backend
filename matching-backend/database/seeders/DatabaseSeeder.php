@@ -22,14 +22,12 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call
         ([
-            regionsSeeder::class,
-            prefecturesSeeder::class,
-            professionsSeeder::class,
-            counselorsSeeder::class,
+            administratorsSeeder::class,
             clientsSeeder::class,
             client_accountsSeeder::class,
+            counselorsSeeder::class,
+            professionsSeeder::class,
             typesSeeder::class,
-            administratorsSeeder::class,
         ]);
     }
 }
