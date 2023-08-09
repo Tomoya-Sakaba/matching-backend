@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('counselors', function (Blueprint $table) {
             $table->id()->comment('カウンセラーID');
             $table->string('name')->comment('氏名');
+            $table->string('name_kana')->comment('カナ');
             $table->string('register_code')->comment('登録用コード');
-            $table->string('email_address')->unique()->comment('メールアドレス');
-            $table->string('password')->comment('パスワード');
+            $table->string('email_address')->nullable()->unique()->comment('メールアドレス');
+            $table->string('password')->nullable()->comment('パスワード');
             $table->string('phone_number', 11)->comment('電話番号');
             $table->string('gender')->comment('性別');
             $table->date('birthday')->comment('誕生日');

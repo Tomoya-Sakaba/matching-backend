@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->comment('名前');
             $table->boolean('is_su')->default(false)->comment('SU権限');
             $table->boolean('is_edit')->default(false)->comment('edit権限');
-            $table->string('register_code')->comment('登録用コード');
+            $table->string('register_code')->index()->comment('登録用コード');
             $table->timestamps();
         });
     }

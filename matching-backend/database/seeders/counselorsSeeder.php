@@ -15,13 +15,13 @@ class counselorsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('counselors')->insert
-        ([
+        DB::table('counselors')->insert([
             [
                 'name' => '山田太郎',
+                'name_kana' => 'ヤマダタロウ',
                 'register_code' => '00000000',
-                'email_address' => 'yamada@sample.com',
-                'password' => bcrypt('yamadatarou'),
+                'email_address' => null,
+                'password' => null,
                 'phone_number' => '09000000001',
                 'gender' => '男性',
                 'birthday' => '2000-07-17',
@@ -36,9 +36,10 @@ class counselorsSeeder extends Seeder
             ],
             [
                 'name' => '佐藤花子',
+                'name_kana' => 'サトウハナコ',
                 'register_code' => '00000002',
-                'emil_address' => 'satou@sample.com',
-                'password' => bcrypt('satouhanako'),
+                'email_address' => null,
+                'password' => null,
                 'phone_number' => '09000000002',
                 'gender' => '女性',
                 'birthday' => '1999-05-25',
@@ -53,9 +54,10 @@ class counselorsSeeder extends Seeder
             ],
             [
                 'name' => '鈴木豊',
+                'name_kana' => 'スズキユタカ',
                 'register_code' => '00000003',
-                'emil_address' => 'suzuki@sample.com',
-                'password' => bcrypt('suzukiyutaka'),
+                'email_address' => null,
+                'password' => null,
                 'phone_number' => '09000000003',
                 'gender' => '男性',
                 'birthday' => '1995-12-07',

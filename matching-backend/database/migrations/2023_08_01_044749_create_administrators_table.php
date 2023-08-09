@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('administrators', function (Blueprint $table) {
             $table->id()->comment('管理者ID');
+            $table->string('register_id')->comment('管理企業ID');
             $table->string('name')->comment('氏名');
+            $table->string('name_kana')->comment('カナ');
+            $table->string('phone_number', 11)->comment('電話番号');
             $table->string('email_address')->unique()->comment('メールアドレス');
             $table->string('password')->comment('パスワード');
-            $table->unsignedBigInteger('register_id')->comment('管理企業ID');
             $table->rememberToken('remember_token')->comment('自動ログイン用token');
             $table->timestamps();
             $table->softDeletes('deleted_at')->comment('削除日');
 
-            $table->foreign('register_id')->references('id')->on('types');
+            $table->foreign('register_id')->references('register_code')->on('types');
         });
     }
 
