@@ -169,7 +169,7 @@ return [
         'year' => '年',
         'month' => '月',
         'day' => '日',
-        'register_code' => '管理企業ID',
+        'register_id' => '管理企業ID',
     ],
 
 ];

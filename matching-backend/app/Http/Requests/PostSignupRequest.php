@@ -36,12 +36,7 @@ class PostSignupRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        $res = response()->json(
-            [
-                'errors' => $validator->errors(),
-            ],
-            400
-        );
-        throw new HttpResponseException($res);
+        $response['errors']  = $validator->errors()->toArray();
+        throw new HttpResponseException(response()->json($response, 422));
     }
 }
