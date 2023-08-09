@@ -18,12 +18,6 @@ class Administrator extends Model
         'password',
     ];
 
-    protected $guarded = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     protected $hidden = [
         'password',
     ];

@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PostSignupRequest;
+use App\Http\Requests\PostAdminSignupRequest;
 use App\Models\Administrator;
-use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
-    public function store(PostSignupRequest $request)
+    public function store(PostAdminSignupRequest $request)
     {
-        Log::debug('success');
         $adminData = $request->only([
             'register_id',
             'name',
