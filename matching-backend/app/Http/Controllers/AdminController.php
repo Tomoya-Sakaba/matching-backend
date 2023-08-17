@@ -6,6 +6,7 @@ use App\Http\Requests\PostAdminLoginRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostAdminSignupRequest;
 use App\Models\Administrator;
+use App\Models\Counselor;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -38,7 +39,9 @@ class AdminController extends Controller
             'password',
         ]);
 
-        $admin['password'] = bcrypt($admin['password']);
+        if (Auth::guard('administrator')->check()) {
+            return response()->json('ログイン済み', 200);
+        }
 
         if (Auth::guard('administrator')->attempt($admin)) {
             return response()->json([
@@ -49,5 +52,25 @@ class AdminController extends Controller
                 'message' => 'ログインに失敗しました。メールアドレスかパスワードを確認してください。'
             ], 401);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('administrator')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json([
+            'message' => 'ログアウトしました'
+        ]);
+    }
+
+    public function index()
+    {
+        $counselors = Counselor::all();
+        $loginUser = Auth::user();
+        return response()->json([
+            'loginUser' => $loginUser,
+            'counselors' => $counselors,
+        ]);
     }
 }

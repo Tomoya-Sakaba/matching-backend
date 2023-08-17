@@ -15,27 +15,32 @@ class administratorsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('administrators')->insert
-        ([
+        DB::table('administrators')->insert([
             [
                 'name' => '山田太郎',
+                'name_kana' => 'ヤマダタロウ',
+                'phone_number' => '09011112222',
                 'email_address' => 'yamada@sample.com',
-                'password' => bcrypt('yamadatarou'),
-                'register_id' => 1,
+                'password' => bcrypt('Yamadatarou1'),
+                'register_id' => '00000001',
                 'created_at' => now(),
             ],
             [
                 'name' => '佐藤花子',
+                'name_kana' => 'サトウハナコ',
+                'phone_number' => '09011112222',
                 'emil_address' => 'satou@sample.com',
-                'password' => bcrypt('satouhanako'),
-                'register_id' => 1,
+                'password' => bcrypt('Satouhanako2'),
+                'register_id' => '00000001',
                 'created_at' => now(),
             ],
             [
                 'name' => '鈴木豊',
+                'name_kana' => 'スズキユタカ',
+                'phone_number' => '09011112222',
                 'emil_address' => 'suzuki@sample.com',
-                'password' => bcrypt('suzukiyutaka'),
-                'register_id' => 1,
+                'password' => bcrypt('Suzukiyutaka3'),
+                'register_id' => '00000002',
                 'created_at' => now(),
             ],
         ]);

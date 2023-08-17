@@ -20,4 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/signup', [AdminController::class, 'store']);
-Route::post('/login', [AdminController::class, 'login']);
+Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
+
+Route::middleware('auth:administrator')->group(function () {
+    Route::get('/index', [AdminController::class, 'index']);
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+});
