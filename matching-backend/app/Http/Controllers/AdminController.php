@@ -37,10 +37,6 @@ class AdminController extends Controller
             'password',
         ]);
 
-        if (Auth::guard('administrator')->check()) {
-            return response()->json('ログイン済み', 200);
-        }
-
         if (Auth::guard('administrator')->attempt($admin)) {
             $request->session()->regenerate();
             return response()->json([
