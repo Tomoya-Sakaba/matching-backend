@@ -26,8 +26,12 @@ class PostAdminSignupRequest extends FormRequest
     public function rules()
     {
         return [
-            'register_id'   => 'exists:types,register_code',
-            'email_address' => 'unique:administrators',
+            'name'          => 'required',
+            'name_kana'     => 'required',
+            'register_id'   => 'required|exists:types,register_code',
+            'email_address' => 'required|email|unique:administrators',
+            'password'      => 'required|confirmed|min:8',
+            'phone_number'  => 'required|regex:/^0[0-9]{9,10}$/',
         ];
     }
 
