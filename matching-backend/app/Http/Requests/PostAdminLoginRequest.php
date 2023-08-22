@@ -27,7 +27,7 @@ class PostAdminLoginRequest extends FormRequest
     {
         return [
             'email_address' => 'required|email',
-            'password'      => 'required|regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\-]{8,24}$/',
+            'password'      => 'required',
         ];
     }
 

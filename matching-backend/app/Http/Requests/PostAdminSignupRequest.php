@@ -30,7 +30,7 @@ class PostAdminSignupRequest extends FormRequest
             'name_kana'     => 'required',
             'register_id'   => 'required|exists:types,register_code',
             'email_address' => 'required|email|unique:administrators',
-            'password'      => 'required|confirmed|regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\-]{8,24}$/',
+            'password'      => 'required|confirmed|min:8',
             'phone_number'  => 'required|regex:/^0[0-9]{9,10}$/',
         ];
     }

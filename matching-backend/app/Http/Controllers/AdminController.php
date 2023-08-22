@@ -24,11 +24,10 @@ class AdminController extends Controller
 
         $adminData['password'] = bcrypt($adminData['password']);
 
-        $admin = Administrator::create($adminData);
+        Administrator::create($adminData);
 
         return response()->json([
             'status' => true,
-            'admin' => $admin,
         ]);
     }
 
@@ -44,14 +43,13 @@ class AdminController extends Controller
         }
 
         if (Auth::guard('administrator')->attempt($admin)) {
+            $request->session()->regenerate();
             return response()->json([
-                'message' => 'ログインに成功しました'
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => 'ログインに失敗しました。メールアドレスかパスワードを確認してください。'
-            ], 401);
+                'message' => 'ログイン成功',
+                'admin' => Auth::guard('administrator')->user(),
+            ]);
         }
+        return response()->json([], 401);
     }
 
     public function logout(Request $request)
