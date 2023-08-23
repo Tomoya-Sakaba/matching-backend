@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('signup', [AdminController::class, 'store']);
 Route::post('login', [AdminController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('admins', function () {
-    return Administrator::all();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [AdminController::class, 'logout']);
 });
