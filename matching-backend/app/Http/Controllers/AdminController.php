@@ -33,20 +33,19 @@ class AdminController extends Controller
 
     public function login(PostAdminLoginRequest $request)
     {
-        $admin = $request->only([
+        $adminData = $request->only([
             'email_address',
             'password',
         ]);
 
-        if (Auth::guard('administrator')->check()) {
-            return response()->json('ログイン済み', 200);
-        }
-
-        if (Auth::guard('administrator')->attempt($admin)) {
-            $request->session()->regenerate();
+        if (Auth::guard('administrator')->attempt($adminData)) {
+            $admin = Administrator::whereEmail_address($request->email_address)->first();
+            $admin->tokens()->delete();
+            $token = $admin->createToken("login:admin{$admin->id}")->plainTextToken;
             return response()->json([
                 'message' => 'ログイン成功',
                 'admin' => Auth::guard('administrator')->user(),
+                'token' => $token
             ]);
         }
         return response()->json([], 401);
@@ -54,10 +53,10 @@ class AdminController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('administrator')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->user()->currentAccessToken()->delete();
+
         return response()->json([
+            'status' => true,
             'message' => 'ログアウトしました'
         ]);
     }

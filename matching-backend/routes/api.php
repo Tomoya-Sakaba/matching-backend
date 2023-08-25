@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/signup', [AdminController::class, 'store']);
 Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
 
-Route::middleware('auth:administrator')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/index', [AdminController::class, 'index']);
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
