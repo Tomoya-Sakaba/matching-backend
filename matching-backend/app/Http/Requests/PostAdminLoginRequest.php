@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class PostAdminSignupRequest extends FormRequest
+class PostAdminLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +26,8 @@ class PostAdminSignupRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required',
-            'name_kana'     => 'required',
-            'register_id'   => 'required|exists:types,register_code',
-            'email_address' => 'required|email|unique:administrators',
-            'password'      => 'required|confirmed|min:8',
-            'phone_number'  => 'required|regex:/^0[0-9]{9,10}$/',
+            'email_address' => 'required|email',
+            'password'      => 'required',
         ];
     }
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostAdminLoginRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostAdminSignupRequest;
 use App\Models\Administrator;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -21,11 +23,36 @@ class AdminController extends Controller
 
         $adminData['password'] = bcrypt($adminData['password']);
 
-        $admin = Administrator::create($adminData);
+        Administrator::create($adminData);
 
         return response()->json([
             'status' => true,
-            'admin' => $admin,
         ]);
+    }
+
+    public function login(PostAdminLoginRequest $request)
+    {
+        $adminData = $request->only([
+            'email_address',
+            'password',
+        ]);
+
+        if (Auth::guard('administrator')->attempt($adminData)) {
+            $admin = Administrator::whereEmail_address($request->email_address)->first();
+            $admin->tokens()->delete();
+            $token = $admin->createToken("login:admin{$admin->id}")->plainTextToken;
+            return response()->json([
+                'message' => 'ログイン成功',
+                'admin' => Auth::guard('administrator')->user(),
+                'token' => $token
+            ]);
+        }
+        return response()->json([], 401);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(true);
     }
 }
