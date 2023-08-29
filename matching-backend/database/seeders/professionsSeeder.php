@@ -17,15 +17,8 @@ class professionsSeeder extends Seeder
     {
         DB::table('professions')->insert
         ([
-            ['name' => 'エンジニア'],
-            ['name' => 'デザイナー'],
-            ['name' => '営業'],
-            ['name' => 'マーケティング'],
-            ['name' => '教育'],
-            ['name' => '医療'],
-            ['name' => '法律'],
-            ['name' => '販売'],
-            ['name' => '企画'],
+            ['name' => '有職者'],
+            ['name' => '主婦'],
         ]);
     }
 }
